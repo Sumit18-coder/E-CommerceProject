@@ -22,7 +22,7 @@ export default function OrdersPage() {
         return;
       }
 
-      const res = await fetch("http://localhost:5000/api/payment/order", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/payment/order`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: total }),
@@ -55,7 +55,7 @@ export default function OrdersPage() {
         order_id: orderData.id,
         handler: async function (response) {
           try {
-            const orderRes = await fetch("http://localhost:5000/api/order", {
+            const orderRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/order`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -103,7 +103,7 @@ export default function OrdersPage() {
 
     const fetchOrders = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/order/my-orders", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/order/my-orders`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

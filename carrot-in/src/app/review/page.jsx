@@ -22,7 +22,7 @@ export default function ReviewPage() {
 
         const fetchOrder = async () => {
             try {
-                const res = await fetch("http://localhost:5000/api/order/my-orders", {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/order/my-orders`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 

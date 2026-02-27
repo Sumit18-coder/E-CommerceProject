@@ -25,7 +25,7 @@ export default function ReturnsPage() {
         const fetchOrder = async () => {
             try {
                 const res = await fetch(
-                    `http://localhost:5000/api/order/my-orders`,
+                    `${process.env.NEXT_PUBLIC_API_URL}/order/my-orders`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -59,7 +59,7 @@ export default function ReturnsPage() {
 
         try {
             const res = await fetch(
-                "http://localhost:5000/api/returns",
+                `${process.env.NEXT_PUBLIC_API_URL}/returns`,
                 {
                     method: "POST",
                     headers: {

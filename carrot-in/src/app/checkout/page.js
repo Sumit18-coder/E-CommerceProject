@@ -14,7 +14,7 @@ export default function CheckoutPage() {
     const placeOrder = async () => {
         try {
             // 1️⃣ Create Razorpay order on backend
-            const res = await fetch("http://localhost:5000/api/payment/order", {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/payment/order`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ amount: totalPrice }), // totalPrice in INR
@@ -50,7 +50,7 @@ export default function CheckoutPage() {
                 handler: async function (response) {
                     // 4️⃣ Payment successful → save order in DB
                     try {
-                        const orderRes = await fetch("http://localhost:5000/api/order", {
+                        const orderRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/order`, {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -67,7 +67,7 @@ export default function CheckoutPage() {
                             const data = await orderRes.json();
                             throw new Error(data.message || "Order saving failed");
                         }
-                        setCartItems([]);  
+                        setCartItems([]);
                         router.push("/success"); // redirect to success page
                     } catch (err) {
                         console.error("Order saving failed:", err);
